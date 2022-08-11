@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type text/css href="cadastro_alunos.css">
+     <title>Cadastro de alunos</title>
+    
+ </head>
+
+<script>
+
+  let nomeUsuarios = [];
+  let telefoneUsuarios = [];
+  let dataNascimentoUsuarios = [];
+  let notaFinalUsuarios = [];
+
+ 
+
+ function redesenha() {
+    lista = "";
+
+    for( let i = 0 ; i < nomeUsuarios.length; i++ ) {
+     lista += "Nome: " + nomeUsuarios[i] + ", telefone: " + telefoneUsuarios[i] +", data de nascimento: "+ dataNascimentoUsuarios[i] + " e nota final: " + notaFinalUsuarios[i] + "<br><br>";
+         
+    }
+    document.getElementById("lista").innerHTML = lista;
+    alert("Sucesso, mais um aluno cadastrado!");
+  }
+
+ 
+
+
+  function criarCadastro() {
+    let nome = document.getElementById("nome").value;
+    let telefone = document.getElementById("telefone").value;
+    let dataNascimento = document.getElementById("dataNascimento").value;
+    let notaFinal = document.getElementById("notaFinal").value;
+
+    let i = nomeUsuarios.length;
+    nomeUsuarios[i] = nome;
+    telefoneUsuarios[i] = telefone;
+    let data = new Date(dataNascimento);
+    let dataFormatada = ((data.getDate() + 1 )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
+    dataNascimentoUsuarios[i] = dataFormatada;
+    notaFinalUsuarios[i] = notaFinal;
+  
+
+    redesenha();
+    
+  }
+</script>
+
+<body>
+    <h1>Cadastro de Alunos</h1>
+    <div id = formulario>
+    <br>Nome: <input id="nome"><br>
+    <br><br>Telefone: <input type = "number"  required id="telefone"><br>
+    <br><br>Data de Nascimento: <input type="date" required id="dataNascimento"><br>
+    <br><br>Nota Final: <input type = "number" required  id="notaFinal">
+
+    <br><br><button onclick="criarCadastro()">Criar Cadastro</button>
+  </div>
+
+    <br>
+    <p id ="aluno"> Alunos: </p> <p id="lista" ></p>
+
+    
+   
+</body>
+
+</html>
